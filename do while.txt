@@ -1,0 +1,82 @@
+1.create 10 files
+
+$cnt=0
+do{
+$fileName='MadhuFile'+$cnt+'.txt'
+New-Item -Path $fileName -ItemType File
+$cnt+=1
+}while($cnt -lt 10)
+
+
+2. create 10 folders 
+
+$cnt=0
+do{
+$path='MadhuFolder'+$cnt
+New-Item -Path $path -ItemType Directory
+$cnt+=1
+}while($cnt -lt 10)
+
+3. create 10 folders inside 10 folders
+
+$i=0
+do{
+$path='MadhuFolder'+$i
+$j=0
+do{
+$path1='newFolder'+$j
+New-Item -Path $path/$path1 -ItemType Directory
+$j+=1
+}while($j -lt 10)
+$i+=1
+}while($i -lt 10)
+
+
+4. create 10 files inside last step
+
+$i=0
+do{
+$path='MadhuFolder'+$i
+$j=0
+do{
+$path1='newFolder'+$j
+$k=0
+do{
+$path2='newFile'+$k+'.txt'
+New-Item -Path $path/$path1/$path2 -ItemType File
+$k++
+}while($k -lt 10)
+$j++
+}while($j -lt 10)
+$i++ 
+}while($i -lt 10)
+
+
+5. copy 10 files of 1st step into 2nd step folder
+
+$i=0
+do{
+$fileName='MadhuFile'+$i+'.txt'
+$j=0
+do{
+$path='MadhuFolder'+$j
+Copy-Item -Path $fileName -Recurse -Destination $path
+$j++
+}while ($j -lt 10)
+$i++
+}while($i -lt 10)
+
+
+6. Remove 10 files from last step
+
+$i=0
+do{
+    $path='MadhuFolder'+$i
+$j=0
+do{
+$fileName='MadhuFile'+$j+'.txt'
+Remove-Item -Path $path\$fileName -Recurse
+$j++
+}while ($j -lt 10)
+$i++
+}while($i -lt 10)
